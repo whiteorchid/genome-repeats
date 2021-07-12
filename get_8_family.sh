@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#BATCH --partition=longq7
+#SBATCH --nodes=1
+#SBATCH --mem=150GB
+#SBATCH --mail-user=sguo2021@health.fau.edu
+#SBATCH --mail-type=ALL
+
+
 less GRCh38_GENCODE_rmsk_TE_keep_chr_long.gtf |awk '{if ($0 ~ /class_id "DNA"/){print $0}}' |awk '{print $1"\t"$4"\t"$5"\t""0""\t""0""\t"$7}' >  hg38_TE_above_100bp_DNA.bed
 
 less GRCh38_GENCODE_rmsk_TE_keep_chr_long.gtf |awk '{if ($0 ~ /class_id "LINE"/){print $0}}' |awk '{print $1"\t"$4"\t"$5"\t""0""\t""0""\t"$7}'>  hg38_TE_above_100bp_LINE.bed
